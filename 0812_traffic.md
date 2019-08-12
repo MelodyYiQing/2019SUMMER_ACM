@@ -5,33 +5,39 @@
 #include <cstring>
 #include <algorithm>
 using namespace std;
-typedef long long llt;
-llt m,n;
-long long const SIZE=10100;
-llt a[SIZE];
-llt b[SIZE];
+int m,n;
+const int SIZE=11010;
+int b[SIZE];
 bool flag[SIZE];
 int main()
 {
-   while(scanf("%lld%lld",&n,&m)!=EOF)
+   while(scanf("%d%d",&n,&m)!=EOF)
    {
        memset(flag,0,sizeof(flag));
-       for(int i=1;i<=n;++i) scanf("%lld",&a[i]);
-       for(int i=1;i<m;++i) scanf("%lld",&b[i]);
-       sort(a+1,a+n+1);sort(b+1,b+1+m);
        for(int i=1;i<=n;++i)
        {
-           for(int j=1;j<=n;++j)
-           {
-               if(b[j]-a[i]>=0) flag[b[j]-a[i]]=1;
-           }
+           int tmp;
+           scanf("%d",&tmp);
+           flag[tmp]=1;
        }
-       for(int i=0;i<SIZE;++i)
+       for(int i=1;i<=m;++i) scanf("%d",&b[i]);
+       for(int d=0;;d++)
        {
-           if(!flag[i]) {printf("%lld\n",i);continue;}
+           int i;
+           for(i=1;i<=m;++i)
+            {
+                if(flag[b[i]+d])
+                    break;
+            }
+           if(i==m+1)
+           {
+               printf("%d\n",d);
+               break;
+           }
        }
    }
     return 0;
 }
+
 
 ```cpp
